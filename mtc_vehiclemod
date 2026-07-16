@@ -1,0 +1,495 @@
+local screen = Instance.new("ScreenGui")
+screen.Parent = game.Players.LocalPlayer.PlayerGui
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 400, 0, 500)
+frame.Position = UDim2.new(0.5, -200, 0.5, -250)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+frame.BackgroundTransparency = 0.2
+frame.BorderSizePixel = 0
+frame.Active = true
+frame.Draggable = true
+frame.Parent = screen
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 8)
+corner.Parent = frame
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 40)
+title.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+title.BackgroundTransparency = 0.2
+title.Text = "Vehicle Mod"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextSize = 20
+title.Font = Enum.Font.GothamBold
+title.Parent = frame
+
+local titlecorner = Instance.new("UICorner")
+titlecorner.CornerRadius = UDim.new(0, 8)
+titlecorner.Parent = title
+
+local vehicleframe = Instance.new("Frame")
+vehicleframe.Size = UDim2.new(0.9, 0, 0, 30)
+vehicleframe.Position = UDim2.new(0.05, 0, 0.1, 0)
+vehicleframe.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+vehicleframe.BackgroundTransparency = 0.2
+vehicleframe.Parent = frame
+
+local vehiclecorner = Instance.new("UICorner")
+vehiclecorner.CornerRadius = UDim.new(0, 4)
+vehiclecorner.Parent = vehicleframe
+
+local vehiclelabel = Instance.new("TextLabel")
+vehiclelabel.Size = UDim2.new(0.3, 0, 1, 0)
+vehiclelabel.BackgroundTransparency = 1
+vehiclelabel.Text = "Vehicle:"
+vehiclelabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+vehiclelabel.TextSize = 14
+vehiclelabel.Font = Enum.Font.Gotham
+vehiclelabel.TextXAlignment = Enum.TextXAlignment.Left
+vehiclelabel.Parent = vehicleframe
+
+local vehicledropdown = Instance.new("TextButton")
+vehicledropdown.Size = UDim2.new(0.6, 0, 1, 0)
+vehicledropdown.Position = UDim2.new(0.35, 0, 0, 0)
+vehicledropdown.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+vehicledropdown.BackgroundTransparency = 0.2
+vehicledropdown.Text = "Select Vehicle"
+vehicledropdown.TextColor3 = Color3.fromRGB(255, 255, 255)
+vehicledropdown.TextSize = 14
+vehicledropdown.Font = Enum.Font.Gotham
+vehicledropdown.Parent = vehicleframe
+
+local dropdowncorner = Instance.new("UICorner")
+dropdowncorner.CornerRadius = UDim.new(0, 4)
+dropdowncorner.Parent = vehicledropdown
+
+local dropdownlist = Instance.new("Frame")
+dropdownlist.Size = UDim2.new(0.6, 0, 0, 100)
+dropdownlist.Position = UDim2.new(0.35, 0, 1.05, 0)
+dropdownlist.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+dropdownlist.BackgroundTransparency = 0.1
+dropdownlist.Visible = false
+dropdownlist.Parent = vehicleframe
+
+local listcorner = Instance.new("UICorner")
+listcorner.CornerRadius = UDim.new(0, 4)
+listcorner.Parent = dropdownlist
+
+local scrolling = Instance.new("ScrollingFrame")
+scrolling.Size = UDim2.new(1, 0, 1, 0)
+scrolling.BackgroundTransparency = 1
+scrolling.CanvasSize = UDim2.new(0, 0, 0, 0)
+scrolling.ScrollBarThickness = 4
+scrolling.Parent = dropdownlist
+
+local listlayout = Instance.new("UIListLayout")
+listlayout.SortOrder = Enum.SortOrder.LayoutOrder
+listlayout.Parent = scrolling
+
+local forwardframe = Instance.new("Frame")
+forwardframe.Size = UDim2.new(0.9, 0, 0, 30)
+forwardframe.Position = UDim2.new(0.05, 0, 0.2, 0)
+forwardframe.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+forwardframe.BackgroundTransparency = 0.2
+forwardframe.Parent = frame
+
+local forwardcorner = Instance.new("UICorner")
+forwardcorner.CornerRadius = UDim.new(0, 4)
+forwardcorner.Parent = forwardframe
+
+local forwardlabel = Instance.new("TextLabel")
+forwardlabel.Size = UDim2.new(0.3, 0, 1, 0)
+forwardlabel.BackgroundTransparency = 1
+forwardlabel.Text = "Forward Speed:"
+forwardlabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+forwardlabel.TextSize = 14
+forwardlabel.Font = Enum.Font.Gotham
+forwardlabel.TextXAlignment = Enum.TextXAlignment.Left
+forwardlabel.Parent = forwardframe
+
+local forwardslider = Instance.new("Frame")
+forwardslider.Size = UDim2.new(0.6, 0, 0.5, 0)
+forwardslider.Position = UDim2.new(0.35, 0, 0.25, 0)
+forwardslider.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+forwardslider.BackgroundTransparency = 0.2
+forwardslider.Parent = forwardframe
+
+local slidercorner = Instance.new("UICorner")
+slidercorner.CornerRadius = UDim.new(0, 4)
+slidercorner.Parent = forwardslider
+
+local sliderfill = Instance.new("Frame")
+sliderfill.Size = UDim2.new(0.5, 0, 1, 0)
+sliderfill.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+sliderfill.BackgroundTransparency = 0.3
+sliderfill.Parent = forwardslider
+
+local fillcorner = Instance.new("UICorner")
+fillcorner.CornerRadius = UDim.new(0, 4)
+fillcorner.Parent = sliderfill
+
+local forwardvalue = Instance.new("TextLabel")
+forwardvalue.Size = UDim2.new(0.1, 0, 1, 0)
+forwardvalue.Position = UDim2.new(0.97, 0, 0, 0)
+forwardvalue.BackgroundTransparency = 1
+forwardvalue.Text = "500"
+forwardvalue.TextColor3 = Color3.fromRGB(255, 255, 255)
+forwardvalue.TextSize = 14
+forwardvalue.Font = Enum.Font.Gotham
+forwardvalue.Parent = forwardframe
+
+local reverseframe = Instance.new("Frame")
+reverseframe.Size = UDim2.new(0.9, 0, 0, 30)
+reverseframe.Position = UDim2.new(0.05, 0, 0.3, 0)
+reverseframe.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+reverseframe.BackgroundTransparency = 0.2
+reverseframe.Parent = frame
+
+local reversecorner = Instance.new("UICorner")
+reversecorner.CornerRadius = UDim.new(0, 4)
+reversecorner.Parent = reverseframe
+
+local reverselabel = Instance.new("TextLabel")
+reverselabel.Size = UDim2.new(0.3, 0, 1, 0)
+reverselabel.BackgroundTransparency = 1
+reverselabel.Text = "Reverse Speed:"
+reverselabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+reverselabel.TextSize = 14
+reverselabel.Font = Enum.Font.Gotham
+reverselabel.TextXAlignment = Enum.TextXAlignment.Left
+reverselabel.Parent = reverseframe
+
+local reverseslider = Instance.new("Frame")
+reverseslider.Size = UDim2.new(0.6, 0, 0.5, 0)
+reverseslider.Position = UDim2.new(0.35, 0, 0.25, 0)
+reverseslider.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+reverseslider.BackgroundTransparency = 0.2
+reverseslider.Parent = reverseframe
+
+local reverseslidercorner = Instance.new("UICorner")
+reverseslidercorner.CornerRadius = UDim.new(0, 4)
+reverseslidercorner.Parent = reverseslider
+
+local reversesliderfill = Instance.new("Frame")
+reversesliderfill.Size = UDim2.new(0.25, 0, 1, 0)
+reversesliderfill.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+reversesliderfill.BackgroundTransparency = 0.3
+reversesliderfill.Parent = reverseslider
+
+local reversefillcorner = Instance.new("UICorner")
+reversefillcorner.CornerRadius = UDim.new(0, 4)
+reversefillcorner.Parent = reversesliderfill
+
+local reversevalue = Instance.new("TextLabel")
+reversevalue.Size = UDim2.new(0.1, 0, 1, 0)
+reversevalue.Position = UDim2.new(0.97, 0, 0, 0)
+reversevalue.BackgroundTransparency = 1
+reversevalue.Text = "50"
+reversevalue.TextColor3 = Color3.fromRGB(255, 255, 255)
+reversevalue.TextSize = 14
+reversevalue.Font = Enum.Font.Gotham
+reversevalue.Parent = reverseframe
+
+local maxforwardframe = Instance.new("Frame")
+maxforwardframe.Size = UDim2.new(0.9, 0, 0, 30)
+maxforwardframe.Position = UDim2.new(0.05, 0, 0.4, 0)
+maxforwardframe.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+maxforwardframe.BackgroundTransparency = 0.2
+maxforwardframe.Parent = frame
+
+local maxforwardcorner = Instance.new("UICorner")
+maxforwardcorner.CornerRadius = UDim.new(0, 4)
+maxforwardcorner.Parent = maxforwardframe
+
+local maxforwardlabel = Instance.new("TextLabel")
+maxforwardlabel.Size = UDim2.new(0.3, 0, 1, 0)
+maxforwardlabel.BackgroundTransparency = 1
+maxforwardlabel.Text = "Max Forward Gear:"
+maxforwardlabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+maxforwardlabel.TextSize = 14
+maxforwardlabel.Font = Enum.Font.Gotham
+maxforwardlabel.TextXAlignment = Enum.TextXAlignment.Left
+maxforwardlabel.Parent = maxforwardframe
+
+local maxforwardslider = Instance.new("Frame")
+maxforwardslider.Size = UDim2.new(0.6, 0, 0.5, 0)
+maxforwardslider.Position = UDim2.new(0.35, 0, 0.25, 0)
+maxforwardslider.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+maxforwardslider.BackgroundTransparency = 0.2
+maxforwardslider.Parent = maxforwardframe
+
+local maxforwardslidercorner = Instance.new("UICorner")
+maxforwardslidercorner.CornerRadius = UDim.new(0, 4)
+maxforwardslidercorner.Parent = maxforwardslider
+
+local maxforwardsliderfill = Instance.new("Frame")
+maxforwardsliderfill.Size = UDim2.new(0.5, 0, 1, 0)
+maxforwardsliderfill.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+maxforwardsliderfill.BackgroundTransparency = 0.3
+maxforwardsliderfill.Parent = maxforwardslider
+
+local maxforwardfillcorner = Instance.new("UICorner")
+maxforwardfillcorner.CornerRadius = UDim.new(0, 4)
+maxforwardfillcorner.Parent = maxforwardsliderfill
+
+local maxforwardvalue = Instance.new("TextLabel")
+maxforwardvalue.Size = UDim2.new(0.1, 0, 1, 0)
+maxforwardvalue.Position = UDim2.new(0.97, 0, 0, 0)
+maxforwardvalue.BackgroundTransparency = 1
+maxforwardvalue.Text = "10"
+maxforwardvalue.TextColor3 = Color3.fromRGB(255, 255, 255)
+maxforwardvalue.TextSize = 14
+maxforwardvalue.Font = Enum.Font.Gotham
+maxforwardvalue.Parent = maxforwardframe
+
+local maxreverseframe = Instance.new("Frame")
+maxreverseframe.Size = UDim2.new(0.9, 0, 0, 30)
+maxreverseframe.Position = UDim2.new(0.05, 0, 0.5, 0)
+maxreverseframe.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+maxreverseframe.BackgroundTransparency = 0.2
+maxreverseframe.Parent = frame
+
+local maxreversecorner = Instance.new("UICorner")
+maxreversecorner.CornerRadius = UDim.new(0, 4)
+maxreversecorner.Parent = maxreverseframe
+
+local maxreverselabel = Instance.new("TextLabel")
+maxreverselabel.Size = UDim2.new(0.3, 0, 1, 0)
+maxreverselabel.BackgroundTransparency = 1
+maxreverselabel.Text = "Max Reverse Gear:"
+maxreverselabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+maxreverselabel.TextSize = 14
+maxreverselabel.Font = Enum.Font.Gotham
+maxreverselabel.TextXAlignment = Enum.TextXAlignment.Left
+maxreverselabel.Parent = maxreverseframe
+
+local maxreverseslider = Instance.new("Frame")
+maxreverseslider.Size = UDim2.new(0.6, 0, 0.5, 0)
+maxreverseslider.Position = UDim2.new(0.35, 0, 0.25, 0)
+maxreverseslider.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+maxreverseslider.BackgroundTransparency = 0.2
+maxreverseslider.Parent = maxreverseframe
+
+local maxreverseslidercorner = Instance.new("UICorner")
+maxreverseslidercorner.CornerRadius = UDim.new(0, 4)
+maxreverseslidercorner.Parent = maxreverseslider
+
+local maxreversesliderfill = Instance.new("Frame")
+maxreversesliderfill.Size = UDim2.new(0.5, 0, 1, 0)
+maxreversesliderfill.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+maxreversesliderfill.BackgroundTransparency = 0.3
+maxreversesliderfill.Parent = maxreverseslider
+
+local maxreversefillcorner = Instance.new("UICorner")
+maxreversefillcorner.CornerRadius = UDim.new(0, 4)
+maxreversefillcorner.Parent = maxreversesliderfill
+
+local maxreversevalue = Instance.new("TextLabel")
+maxreversevalue.Size = UDim2.new(0.1, 0, 1, 0)
+maxreversevalue.Position = UDim2.new(0.97, 0, 0, 0)
+maxreversevalue.BackgroundTransparency = 1
+maxreversevalue.Text = "10"
+maxreversevalue.TextColor3 = Color3.fromRGB(255, 255, 255)
+maxreversevalue.TextSize = 14
+maxreversevalue.Font = Enum.Font.Gotham
+maxreversevalue.Parent = maxreverseframe
+
+local applybutton = Instance.new("TextButton")
+applybutton.Size = UDim2.new(0.6, 0, 0, 35)
+applybutton.Position = UDim2.new(0.2, 0, 0.65, 0)
+applybutton.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+applybutton.BackgroundTransparency = 0.2
+applybutton.Text = "Apply Modifications"
+applybutton.TextColor3 = Color3.fromRGB(255, 255, 255)
+applybutton.TextSize = 16
+applybutton.Font = Enum.Font.GothamBold
+applybutton.Parent = frame
+
+local applycorner = Instance.new("UICorner")
+applycorner.CornerRadius = UDim.new(0, 4)
+applycorner.Parent = applybutton
+
+local vehicles = game:GetService("ReplicatedStorage").NewDriveData.Vehicles
+local selected = nil
+local forward = 0
+local reverse = 0
+local maxforwardgear = 0
+local maxreversegear = 0
+
+local function updatevalues()
+    if not selected then return end
+    local config = require(vehicles:FindFirstChild(selected))
+    forward = config.ForwardSpeed
+    reverse = config.ReverseSpeed
+    maxforwardgear = config.MaxForwardGear
+    maxreversegear = config.MaxReverseGear
+    forwardvalue.Text = tostring(forward)
+    reversevalue.Text = tostring(reverse)
+    maxforwardvalue.Text = tostring(maxforwardgear)
+    maxreversevalue.Text = tostring(maxreversegear)
+    sliderfill.Size = UDim2.new(forward / 1000, 0, 1, 0)
+    reversesliderfill.Size = UDim2.new(reverse / 200, 0, 1, 0)
+    maxforwardsliderfill.Size = UDim2.new(maxforwardgear / 20, 0, 1, 0)
+    maxreversesliderfill.Size = UDim2.new(maxreversegear / 20, 0, 1, 0)
+end
+
+local function apply()
+    if not selected then return end
+    local config = require(vehicles:FindFirstChild(selected))
+    config.ForwardSpeed = forward
+    config.ReverseSpeed = reverse
+    config.MaxForwardGear = maxforwardgear
+    config.MaxReverseGear = maxreversegear
+end
+
+local vehiclelist = {}
+for i, v in pairs(vehicles:GetChildren()) do
+    table.insert(vehiclelist, v.Name)
+end
+
+local dropdownopen = false
+
+vehicledropdown.MouseButton1Click:Connect(function()
+    dropdownopen = not dropdownopen
+    dropdownlist.Visible = dropdownopen
+    if dropdownopen then
+        for i, child in pairs(scrolling:GetChildren()) do
+            if child:IsA("TextButton") then
+                child:Destroy()
+            end
+        end
+        local y = 0
+        for i, name in pairs(vehiclelist) do
+            local btn = Instance.new("TextButton")
+            btn.Size = UDim2.new(1, 0, 0, 25)
+            btn.Position = UDim2.new(0, 0, 0, y)
+            btn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+            btn.BackgroundTransparency = 0.2
+            btn.Text = name
+            btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+            btn.TextSize = 14
+            btn.Font = Enum.Font.Gotham
+            btn.Parent = scrolling
+            btn.ZIndex = 10
+            btn.MouseButton1Click:Connect(function()
+                selected = name
+                vehicledropdown.Text = name
+                dropdownlist.Visible = false
+                dropdownopen = false
+                updatevalues()
+            end)
+            y = y + 25
+        end
+        scrolling.CanvasSize = UDim2.new(0, 0, 0, y)
+    end
+end)
+
+local forwarddragging = false
+forwardslider.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        forwarddragging = true
+        local pos = math.clamp((input.Position.X - forwardslider.AbsolutePosition.X) / forwardslider.AbsoluteSize.X, 0, 1)
+        local value = math.round(0 + (1000 - 0) * pos)
+        sliderfill.Size = UDim2.new(pos, 0, 1, 0)
+        forwardvalue.Text = tostring(value)
+        forward = value
+    end
+end)
+forwardslider.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        forwarddragging = false
+    end
+end)
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if forwarddragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local pos = math.clamp((input.Position.X - forwardslider.AbsolutePosition.X) / forwardslider.AbsoluteSize.X, 0, 1)
+        local value = math.round(0 + (1000 - 0) * pos)
+        sliderfill.Size = UDim2.new(pos, 0, 1, 0)
+        forwardvalue.Text = tostring(value)
+        forward = value
+    end
+end)
+
+local reversedragging = false
+reverseslider.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        reversedragging = true
+        local pos = math.clamp((input.Position.X - reverseslider.AbsolutePosition.X) / reverseslider.AbsoluteSize.X, 0, 1)
+        local value = math.round(0 + (200 - 0) * pos)
+        reversesliderfill.Size = UDim2.new(pos, 0, 1, 0)
+        reversevalue.Text = tostring(value)
+        reverse = value
+    end
+end)
+reverseslider.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        reversedragging = false
+    end
+end)
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if reversedragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local pos = math.clamp((input.Position.X - reverseslider.AbsolutePosition.X) / reverseslider.AbsoluteSize.X, 0, 1)
+        local value = math.round(0 + (200 - 0) * pos)
+        reversesliderfill.Size = UDim2.new(pos, 0, 1, 0)
+        reversevalue.Text = tostring(value)
+        reverse = value
+    end
+end)
+
+local maxforwarddragging = false
+maxforwardslider.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        maxforwarddragging = true
+        local pos = math.clamp((input.Position.X - maxforwardslider.AbsolutePosition.X) / maxforwardslider.AbsoluteSize.X, 0, 1)
+        local value = math.round(1 + (20 - 1) * pos)
+        maxforwardsliderfill.Size = UDim2.new(pos, 0, 1, 0)
+        maxforwardvalue.Text = tostring(value)
+        maxforwardgear = value
+    end
+end)
+maxforwardslider.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        maxforwarddragging = false
+    end
+end)
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if maxforwarddragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local pos = math.clamp((input.Position.X - maxforwardslider.AbsolutePosition.X) / maxforwardslider.AbsoluteSize.X, 0, 1)
+        local value = math.round(1 + (20 - 1) * pos)
+        maxforwardsliderfill.Size = UDim2.new(pos, 0, 1, 0)
+        maxforwardvalue.Text = tostring(value)
+        maxforwardgear = value
+    end
+end)
+
+local maxreversedragging = false
+maxreverseslider.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        maxreversedragging = true
+        local pos = math.clamp((input.Position.X - maxreverseslider.AbsolutePosition.X) / maxreverseslider.AbsoluteSize.X, 0, 1)
+        local value = math.round(1 + (20 - 1) * pos)
+        maxreversesliderfill.Size = UDim2.new(pos, 0, 1, 0)
+        maxreversevalue.Text = tostring(value)
+        maxreversegear = value
+    end
+end)
+maxreverseslider.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        maxreversedragging = false
+    end
+end)
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if maxreversedragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local pos = math.clamp((input.Position.X - maxreverseslider.AbsolutePosition.X) / maxreverseslider.AbsoluteSize.X, 0, 1)
+        local value = math.round(1 + (20 - 1) * pos)
+        maxreversesliderfill.Size = UDim2.new(pos, 0, 1, 0)
+        maxreversevalue.Text = tostring(value)
+        maxreversegear = value
+    end
+end)
+
+applybutton.MouseButton1Click:Connect(function()
+    apply()
+end)
